@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+
+   <link rel="stylesheet" type="text/css" href="{% static 'sharefile/style.css' %}" />
+</head>
+<body>
+
+{%  if latest_contributor_list %}
+    <ul>
+        {% for contributor in latest_contributor_list %}
+            <li>
+                <a href="{% url 'sharefile:belongto' contributor.id %}">{{ contributor.name }}</a>
+            </li>
+        {%  endfor %}
+    </ul>
+{%  else %}
+    <p>  没有任何文章</p>
+{%  endif %}
+</body>
+</html>

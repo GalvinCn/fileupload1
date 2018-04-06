@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ <h1>{{ contributor.name }}</h1>
+ {%  if error_message  %} <p><strong>{{ error_message }}</strong></p>{% endif %}
+ <form action="{% url 'sharefile:download' contributor.id %}" method="post">
+     {% csrf_token %}
+     {%  for post in  contributor.post_set.all %}
+        <input type="radio"  name="topost"  id="post{{ forloop.counter }}" value="{{ post.id }}" />
+        <label for="post{{ forloop }}"> {{ post.title }}</label><br>
+         <span> 下载次数： </span>
+         <span>{{ post.down_total }}</span><br>
+     {%  endfor %}
+     <input type="submit" value="download">
+
+
+ </form>
+ <!--
+<ul>
+   {%  for post in  contributor.post_set.all %}
+     <li>{{ post.title }}</li>
+    {%  endfor %}
+</ul> -->
+</body>
+</html>

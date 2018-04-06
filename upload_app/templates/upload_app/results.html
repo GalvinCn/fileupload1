@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<h1>{{ contributor.name }}</h1>
+
+<ul>
+{% for post in contributor.post_set.all %}
+    <li>{{ post.title }} -- {{ post.down_total }} download{{post.down_total|pluralize }}</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'sharefile:belongto' contributor.id %}">Download again?</a>
+
+</body>
+</html>
